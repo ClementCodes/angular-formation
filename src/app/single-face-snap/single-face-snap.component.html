@@ -1,0 +1,25 @@
+<h4>
+  site visité : {{ 464965985959595 | number }} soit par jour
+  {{ 3.54 | percent }} de plus qu'hier ce qui rapporte
+  {{ 458.63 | currency: "EUR":"code" }}
+</h4>
+
+<div
+  class="face-snap-card"
+  *ngIf="faceSnap$ | async as faceSnap"
+  [ngClass]="{ snapped: buttonTexte === 'oups déja snap' }"
+>
+  <h2>{{ faceSnap.title | titlecase }}</h2>
+  <h2>{{ faceSnap.description }}</h2>
+  <a routerLink="/facesnaps">Retour</a>
+  <p *ngIf="faceSnap.location">Photo prise a{{ faceSnap.location }}</p>
+  <p>Mis en ligne le {{ faceSnap.createdDate | date: "dd/MM/yy, à HH:mm" }}</p>
+  <p>
+    <button (click)="onAddSnap(faceSnap.id)">{{ buttonTexte }}</button>
+    <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }"
+      >🤌 {{ faceSnap.snaps }}</span
+    >
+  </p>
+
+  <img [src]="faceSnap.url" [alt]="faceSnap.title" srcset="" />
+</div>

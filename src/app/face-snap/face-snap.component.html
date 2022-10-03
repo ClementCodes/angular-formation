@@ -1,0 +1,13 @@
+<div
+  class="face-snap-card"
+  [ngClass]="{ snapped: buttonTexte === 'oups déja snap' }"
+>
+  <h2>{{ faceSnap.title | titlecase }}</h2>
+  <h2>{{ faceSnap.description }}</h2>
+  <button (click)="onViewFaceSnap()">VIEW</button>
+  <h5>
+    site visité : {{ 464965985959595 | number }} soit par jour
+    {{ 3.54 | percent }} de plus qu'hier ce qui rapporte
+    {{ 458.63 | currency: "EUR":"code" }}
+  </h5>
+</div>
