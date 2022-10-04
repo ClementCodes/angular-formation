@@ -10,9 +10,10 @@ import { SingleFaceSnapComponent } from './single-face-snap/single-face-snap.com
 
 const routes: Routes = [
   { path: 'facesnaps', component: FaceSnapListComponent },
-  { path: '', component: LandingPageComponentComponent },
+
   { path: 'facesnaps/:id', component: SingleFaceSnapComponent },
   { path: 'create', component: NewFaceSnapComponent },
+  { path: '', component: LandingPageComponentComponent },
 ];
 
 @NgModule({
