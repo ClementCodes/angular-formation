@@ -13,7 +13,9 @@
   <h2>{{ faceSnap.description }}</h2>
   <a routerLink="/facesnaps">Retour</a>
   <p *ngIf="faceSnap.location">Photo prise a{{ faceSnap.location }}</p>
-  <p>Mis en ligne le {{ faceSnap.createdDate | date: "dd/MM/yy, à HH:mm" }}</p>
+  <p>
+    Mis en ligne à {{ faceSnap.createdDate | date: "HH:mm, le d MMMM yyyy" }}
+  </p>
   <p>
     <button (click)="onAddSnap(faceSnap.id)">{{ buttonTexte }}</button>
     <span [ngStyle]="{ color: 'rgb(0, ' + faceSnap.snaps + ', 0)' }"

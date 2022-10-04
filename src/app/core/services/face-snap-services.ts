@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, Observable, switchMap } from "rxjs";
 import { FaceSnap } from "../models/face-snap.model";
-import { NewFaceSnapComponent } from "../new-face-snap/new-face-snap.component";
+
 
 //ici la partie inhjectable au niveau du root et dit quel'lle doit etre injecté au niveau racine de l application
 @Injectable({
@@ -10,6 +10,7 @@ import { NewFaceSnapComponent } from "../new-face-snap/new-face-snap.component";
     providedIn: 'root'
 })
 export class FaceSnapService {
+    faceSnaps: any;
 
 
     constructor(private http: HttpClient) { }
@@ -77,18 +78,23 @@ export class FaceSnapService {
         )
     }
 
-    // addFaceSnap(formValue: { title: string, description: string, url: string, location?: string }): void {
+    addFaceSnap(formValue: { title: string, description: string, url: string, location?: string }): Observable<FaceSnap> {
 
 
-    //     const faceSnap: FaceSnap = {
-    //         ...formValue,
-    //         createdDate: new Date(),
-    //         snaps: 0,
-    //         id: this.faceSnaps[this.faceSnaps.length - 1].id + 1
-    //     }
+        return this.getAllFaceSnaps().pipe(
 
-    //     this.faceSnaps.push(faceSnap)
-    // }
+            map(facenaps => [...facenaps].sort((a: FaceSnap, b: FaceSnap) => a.id - b.id))
+            , map(sortedFaceSnaps => sortedFaceSnaps[sortedFaceSnaps.length - 1]),
+            map(previousFaceSnaps => ({
+
+                ...formValue,
+                snaps: 0,
+                createdDate: new Date(),
+                id: previousFaceSnaps.id + 1,
+
+            })),
+            switchMap(newFaceSnap => this.http.post<FaceSnap>('http://localhost:3000/facesnaps', newFaceSnap)))
+    }
 }
 
 
