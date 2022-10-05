@@ -4,8 +4,8 @@ import { CommonModule } from '@angular/common';
 
 
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { FaceSnapListComponent } from '../face-snap-list/face-snap-list.component';
+
+import { FaceSnapListComponent } from '../core/face-snap-list/face-snap-list.component';
 import { NewFaceSnapComponent } from '../new-face-snap/new-face-snap.component';
 import { SingleFaceSnapComponent } from '../single-face-snap/single-face-snap.component';
 import { FaceSnapComponent } from './component/face-snap.component';
